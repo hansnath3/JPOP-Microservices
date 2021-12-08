@@ -1,5 +1,6 @@
 package com.user.service.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.user.service.dto.UserDTO;
 import com.user.service.service.UserService;
 
@@ -28,6 +31,9 @@ public class UserController {
 		    notes = "No input value needed.",
 		    response = UserDTO.class,
 		    responseContainer = "List")
+	@HystrixCommand(fallbackMethod = "fallbackUsers", commandProperties = {
+			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+			})
 	@GetMapping(value="/")
     public List<UserDTO> users(){
 		return userService.findAllBooks();
@@ -69,5 +75,9 @@ public class UserController {
     	userService.updateUser(user,userId);
     	return "User updated successfully";
     }
+	
+	private List<UserDTO> fallbackBooks() {
+		   return Collections.emptyList();
+	}
 
 }

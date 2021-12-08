@@ -1,8 +1,10 @@
 package com.book.service.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.book.service.config.Configuration;
 import com.book.service.dto.BookDTO;
 import com.book.service.service.BookService;
 
@@ -23,10 +26,16 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 	
+	@Autowired
+	Configuration configuration; 
+	
 	@ApiOperation(value = "Finds all books data.",
 			    notes = "No input value needed.",
 			    response = BookDTO.class,
 			    responseContainer = "List")
+//	@HystrixCommand(fallbackMethod = "fallbackBooks", commandProperties = {
+//			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+//			})
     @GetMapping(value="/")
     public List<BookDTO> books(){
     	return bookService.findAllBooks();
@@ -64,5 +73,16 @@ public class BookController {
     public String updateBook(@PathVariable Long bookId,@RequestBody BookDTO book){
     	bookService.updateBook(book,bookId);
     	return "Book updated successfully";
+    }
+	
+	private List<BookDTO> fallbackBooks() {
+		   return Collections.emptyList();
+	}
+	
+	@GetMapping(value="/limit")
+    public String limit(){
+    	//System.out.println("URL = "+configuration.getUrl());
+    	System.out.println("User name = "+configuration.getUsername());
+    	return "User name = "+configuration.getUsername();
     }
 }

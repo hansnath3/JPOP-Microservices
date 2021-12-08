@@ -1,0 +1,10 @@
+# GLOBAL CONFIGURATION
+
+spring:
+  application.name: eureka-server-service
+eureka:
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+server:
+   port: 8761
