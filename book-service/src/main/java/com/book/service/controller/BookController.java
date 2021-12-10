@@ -83,6 +83,6 @@ public class BookController {
     public String limit(){
     	//System.out.println("URL = "+configuration.getUrl());
     	System.out.println("User name = "+configuration.getUsername());
-    	return "User name = "+configuration.getUsername();
+    	return "User name = "+configuration.getUrl();
     }
 }

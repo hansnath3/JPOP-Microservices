@@ -1,6 +1,10 @@
 # GLOBAL CONFIGURATION
 
 spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      enabled: false
   application.name: book-service
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -23,5 +27,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     instance:
       preferIpAddress: true
-limit-service:
-   username: root
+username: root
+url: test.com
