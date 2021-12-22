@@ -7,9 +7,15 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/user?createDatabaseIfNotExist=true
     username: root
     password: root
-  jpa: 
-    hibernate:
-      ddl-auto: update
+  #jpa: 
+  #  hibernate:
+  #    ddl-auto: update
 server:
   contextPath: /
   port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      preferIpAddress: true

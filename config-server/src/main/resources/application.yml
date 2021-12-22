@@ -1,0 +1,25 @@
+# GLOBAL CONFIGURATION
+
+spring:
+  profile:
+    active: default
+  application.name: config-server-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hansnath3/config-server.git
+        default-label: main
+server:
+  port: 8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+

@@ -1,15 +1,31 @@
 # GLOBAL CONFIGURATION
 
 spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      enabled: false
   application.name: book-service
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/book?createDatabaseIfNotExist=true
     username: root
     password: root
-  jpa: 
-    hibernate:
-      ddl-auto: update
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  #jpa: 
+  #  hibernate:
+  #    ddl-auto: update
 server:
-  contextPath: /
   port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      preferIpAddress: true
+username: root
+url: test.com
