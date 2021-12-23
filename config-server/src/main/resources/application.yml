@@ -3,7 +3,8 @@
 spring:
   profile:
     active: default
-  application.name: config-server-service
+  application:
+    name: config-server-service
   rabbitmq:
     host: localhost
     port: 5672

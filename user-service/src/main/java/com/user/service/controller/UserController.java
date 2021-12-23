@@ -35,16 +35,16 @@ public class UserController {
 			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
 			})
 	@GetMapping(value="/")
-    public List<UserDTO> users(){
-		return userService.findAllBooks();
+    public List<UserDTO> get(){
+		return userService.findAll();
     }
 	
 	@ApiOperation(value = "Finds single user data.",
 		    notes = "Provide user id in parameter.",
 		    response = UserDTO.class)
     @GetMapping(value="/{userId}")
-    public UserDTO users(@PathVariable("userId") Long userId){
-    	return userService.findBook(userId);
+    public UserDTO getById(@PathVariable("userId") Long userId){
+    	return userService.findById(userId);
     }
     
 
@@ -52,8 +52,8 @@ public class UserController {
 		    notes = "Provide user Json request.",
 		    response = UserDTO.class)
     @PostMapping(value="/")
-    public String saveBooks(@RequestBody UserDTO user){
-    	userService.saveUser(user);
+    public String save(@RequestBody UserDTO user){
+    	userService.save(user);
     	return "User added successfully.";
     }
     
@@ -62,8 +62,8 @@ public class UserController {
 		    notes = "Provide user id in parameter",
 		    response = UserDTO.class)
     @DeleteMapping(value="/{userId}")
-    public String deleteUser(@PathVariable Long userId){
-    	userService.deleteBook(userId);
+    public String delete(@PathVariable Long userId){
+    	userService.delete(userId);
     	return "User deleted successfully";
     }
 
@@ -71,8 +71,8 @@ public class UserController {
 		    notes = "Provide user id in parameter",
 		    response = UserDTO.class)
     @PutMapping(value="/{userId}")
-    public String updateUser(@PathVariable Long userId, @RequestBody UserDTO user){
-    	userService.updateUser(user,userId);
+    public String update(@PathVariable Long userId, @RequestBody UserDTO user){
+    	userService.update(user,userId);
     	return "User updated successfully";
     }
 	

@@ -37,7 +37,7 @@ public class BookController {
 //			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
 //			})
     @GetMapping(value="/")
-    public List<BookDTO> books(){
+    public List<BookDTO> get(){
     	return bookService.findAllBooks();
     }
     
@@ -45,16 +45,16 @@ public class BookController {
 		    notes = "Input needed of book id in parameter.",
 		    response = BookDTO.class)
     @GetMapping(value="/{bookId}")
-    public BookDTO books(@PathVariable("bookId") Long bookId){
-    	return bookService.findBook(bookId);
+    public BookDTO getById(@PathVariable("bookId") Long bookId){
+    	return bookService.findById(bookId);
     }
     
 	@ApiOperation(value = "Saves book data.",
 		    notes = "Provide json request data of book.",
 		    response = BookDTO.class)
     @PostMapping(value="/")
-    public String saveBooks(@RequestBody BookDTO book){
-    	bookService.saveBook(book);
+    public String save(@RequestBody BookDTO book){
+    	bookService.save(book);
     	return "Book added successfully.";
     }
 	
@@ -62,16 +62,16 @@ public class BookController {
 		    notes = "Provide book id as input for deletion.",
 		    response = BookDTO.class)
     @DeleteMapping(value="/{bookId}")
-    public String deleteBook(@PathVariable Long bookId){
-    	bookService.deleteBook(bookId);
+    public String deleteById(@PathVariable Long bookId){
+    	bookService.delete(bookId);
     	return "Book deleted successfully";
     }
 	@ApiOperation(value = "Update book data.",
 		    notes = "Provide book id as input for updation.",
 		    response = BookDTO.class)
     @PutMapping(value="/{bookId}")
-    public String updateBook(@PathVariable Long bookId,@RequestBody BookDTO book){
-    	bookService.updateBook(book,bookId);
+    public String update(@PathVariable Long bookId,@RequestBody BookDTO book){
+    	bookService.update(book,bookId);
     	return "Book updated successfully";
     }
 	

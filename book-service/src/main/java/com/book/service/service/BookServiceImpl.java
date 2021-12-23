@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService{
 	
 	
 	@Override
-	public void saveBook(BookDTO bookDto) {
+	public void save(BookDTO bookDto) {
 		Book  book = CustomMapper.convertDtoToModel(bookDto);
 		bookRepository.save(book);
 	}
@@ -31,18 +31,18 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	@Override
-	public BookDTO findBook(Long bookId) {
+	public BookDTO findById(Long bookId) {
 		Optional<Book> book = bookRepository.findById(bookId);
 		return CustomMapper.convertModelToDto(book);
 	}
 	
 	@Override
-	public void deleteBook(Long bookId) {
+	public void delete(Long bookId) {
 		bookRepository.deleteById(bookId);
 	}
 
 	@Override
-	public void updateBook(BookDTO bookDto,Long bookId) {
+	public void update(BookDTO bookDto,Long bookId) {
 		Optional<Book> book = bookRepository.findById(bookId);
 		if(book.isPresent()) {
 			Book b = book.get();
