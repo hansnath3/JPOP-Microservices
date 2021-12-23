@@ -5,7 +5,8 @@ spring:
     config:
       uri: http://localhost:8888
       enabled: false
-  application.name: book-service
+  application:
+    name: book-service
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/book?createDatabaseIfNotExist=true

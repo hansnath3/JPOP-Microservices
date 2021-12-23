@@ -6,14 +6,14 @@ import com.book.service.dto.BookDTO;
 
 public interface BookService {
 
-	void saveBook(BookDTO book);
+	void save(BookDTO book);
 
 	List<BookDTO> findAllBooks();
 
-	BookDTO findBook(Long bookId);
+	BookDTO findById(Long bookId);
 
-	void deleteBook(Long bookId);
+	void delete(Long bookId);
 
-	void updateBook(BookDTO book, Long bookId);
+	void update(BookDTO book, Long bookId);
 
 }

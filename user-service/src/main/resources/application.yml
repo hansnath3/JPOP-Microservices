@@ -1,7 +1,8 @@
 # GLOBAL CONFIGURATION
 
 spring:
-  application.name: user-service
+  application:
+    name: user-service
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/user?createDatabaseIfNotExist=true

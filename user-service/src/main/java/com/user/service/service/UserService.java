@@ -6,14 +6,14 @@ import com.user.service.dto.UserDTO;
 
 public interface UserService {
 
-	List<UserDTO> findAllBooks();
+	List<UserDTO> findAll();
 
-	UserDTO findBook(Long userId);
+	UserDTO findById(Long userId);
 
-	void saveUser(UserDTO user);
+	void save(UserDTO user);
 
-	void deleteBook(Long userId);
+	void delete(Long userId);
 
-	void updateUser(UserDTO user, Long userId);
+	void update(UserDTO user, Long userId);
 
 }

@@ -18,31 +18,31 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public List<UserDTO> findAllBooks() {
+	public List<UserDTO> findAll() {
 		List<User> users = (List<User>) userRepository.findAll();
 		return CustomMapper.convertToDtoFromList(users);
 	}
 
 	@Override
-	public UserDTO findBook(Long userId) {
+	public UserDTO findById(Long userId) {
 		Optional<User> user = userRepository.findById(userId);
 		return CustomMapper.convertModelToDto(user);
 	}
 
 	@Override
-	public void saveUser(UserDTO userDto) {
+	public void save(UserDTO userDto) {
 		User  user = CustomMapper.convertDtoToModel(userDto);
 		userRepository.save(user);
 	}
 
 	@Override
-	public void deleteBook(Long userId) {
+	public void delete(Long userId) {
 		userRepository.deleteById(userId);
 		
 	}
 
 	@Override
-	public void updateUser(UserDTO userDto, Long userId) {
+	public void update(UserDTO userDto, Long userId) {
 		Optional<User> user = userRepository.findById(userId);
 		if(user.isPresent()) {
 			User u = user.get();

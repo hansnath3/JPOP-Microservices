@@ -1,7 +1,8 @@
 # GLOBAL CONFIGURATION
 
 spring:
-  application.name: eureka-server-service
+  application:
+    name: eureka-server-service
 eureka:
    client:
       registerWithEureka: false
